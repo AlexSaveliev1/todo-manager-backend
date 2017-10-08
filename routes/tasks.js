@@ -46,8 +46,14 @@ router.put('/:id', function(req, res, next) {
     .catch(error => res.status(404).json(error));
 });
 
-router.delete('/', function(req, res, next) {
-  console.log('knock, knock, DELETE')
+router.delete('/:id', function(req, res, next) {
+  const { body, params } = req,
+  { id } = params;
+
+  taskModel.findByIdAndRemove(id)
+    .then(removedTask => taskSerializer.serialize(removedTask))
+    .then(serializedTask => res.json(serializedTask))
+    .catch(error => res.status(404).json(error));
 });
 
 
