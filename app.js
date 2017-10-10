@@ -7,8 +7,8 @@ let express = require('express'),
   cors = require('cors'),
   app = express();
 
-let index = require('./routes/index'),
-  tasks = require('./routes/tasks');
+let tasks = require('./routes/tasks'),
+  groups = require('./routes/groups');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -24,8 +24,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
-app.use('/', index);
 app.use('/tasks', tasks);
+app.use('/groups', groups);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

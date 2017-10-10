@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
 
 let schema = mongoose.Schema({
-  id: Number,
   title: String,
-  tasks: Array
+  tasks: [{type: mongoose.Schema.Types.Number, ref: 'task'}],
 });
 
 module.exports = schema;

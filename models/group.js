@@ -1,12 +1,12 @@
 const mongoose = require('mongoose'),
   autoIncrement = require('mongoose-auto-increment'),
-  taskSchema = require('../schemas/task'),
+  groupSchema = require('../schemas/group'),
   db = 'todomanager',
   connection = mongoose.connect(`mongodb://localhost/${db}`);
 
 autoIncrement.initialize(connection);
-taskSchema.plugin(autoIncrement.plugin, 'task');
+groupSchema.plugin(autoIncrement.plugin, 'group');
 
-let taskModel = mongoose.model('task', taskSchema);
+let groupModel = mongoose.model('group', groupSchema);
 
-module.exports = taskModel;
+module.exports = groupModel;
