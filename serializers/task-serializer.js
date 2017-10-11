@@ -1,10 +1,12 @@
 function serializeData(data) {
-  const { _id, title, createdAt, dueDate, subtasks, finishedAt, updatedAt } = data;
+  const { _id, groupId, title, createdAt, dueDate, subtasks, finishedAt, updatedAt, priority } = data;
   
     return {
       id: _id,
+      groupId,
       title,
       dueDate,
+      priority,
       createdAt,
       updatedAt,
       finishedAt,

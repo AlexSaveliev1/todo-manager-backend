@@ -1,13 +1,11 @@
 const taskSerializer = require('./task-serializer');
 
-function serializeData(data, populated) {
-  let { _id, title, createdAt, tasks, updatedAt, deletedAt} = data,
-    populatedTasks = populated ? taskSerializer.serialize(tasks, false) : tasks;
+function serializeData(data) {
+  let { _id, title, createdAt, updatedAt, deletedAt} = data;
 
     return {
       id: _id,
       title,
-      tasks,
       createdAt,
       updatedAt,
       deletedAt
@@ -15,9 +13,9 @@ function serializeData(data, populated) {
 }
 
 module.exports = {
-  serialize(data, { async = true, populated }) {
+  serialize(data, async = true) {
     const isArrayOfGroups = Array.isArray(data),
-      serializedGroups = isArrayOfGroups ? data.map(group => serializeData(group, populated)) : serializeData(data, populated);
+      serializedGroups = isArrayOfGroups ? data.map(group => serializeData(group)) : serializeData(data);
 
     if (async) {
       return new Promise(resolve => {
