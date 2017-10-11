@@ -1,7 +1,13 @@
 module.exports = {
   parse(queryParams) {
-    const { dueDate, from, to, groupId, priority } = queryParams,
+    const { dueDate, from, to, groupId, priority, noGroup } = queryParams,
       filter = {};
+    
+    if (noGroup) {
+      filter.groupId = {
+        $eq: null
+      }
+    }
 
     if (from && to) {
       filter.dueDate = {

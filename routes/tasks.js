@@ -3,16 +3,12 @@ let express = require('express'),
   taskSerializer = require('../serializers/task-serializer'),
   tasksQpParser = require('../services/tasks-qp-parser'),
   taskModel = require('../models/task'),
+  groupModel = require('../models/group'),
   _ = require('lodash');
 
 router.get('/', function(req, res, next) {
   const { query } = req,
-    { dueDate, from, to, priority, groupId } = query,
-    isEmptyQuery = _.isEmpty(query),
-    filter = tasksQpParser.parse(query),
-    isFilterEmpty = _.isEmpty(filter);
-
-    isFilterEmpty ? filter.groupId = { $eq: null } : ''
+    filter = tasksQpParser.parse(query);
 
     return taskModel.find(filter)
       .then(tasks => taskSerializer.serialize(tasks))

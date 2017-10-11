@@ -3,6 +3,7 @@ let express = require('express'),
   groupSerializer = require('../serializers/group-serializer'),
   taskSerializer = require('../serializers/task-serializer'),
   groupModel = require('../models/group'),
+  taskModel = require('../models/task'),
   _ = require('lodash');
 
 router.get('/', function(req, res, next) {
@@ -34,19 +35,25 @@ router.post('/', function(req, res, next) {
 
 router.put('/:id', function(req, res, next) {
   const { body, params } = req,
-    taskToUpdate = body.task,
+    groupToUpdate = body.group,
     { id } = params;
 
-  taskModel.findByIdAndUpdate(id, taskToUpdate, { new: true })
+  groupModel.findByIdAndUpdate(id, groupToUpdate, { new: true })
+    .then(updatedGroup => groupSerializer.serialize(updatedGroup))
+    .then(serializedGroup => res.json(serializedGroup))
+    .catch(error => res.status(404).json(error));
 });
 
 router.delete('/:id', function(req, res, next) {
   const { body, params } = req,
   { id } = params;
 
-  taskModel.findByIdAndRemove(id)
-    .then(removedTask => taskSerializer.serialize(removedTask))
-    .then(serializedTask => res.json(serializedTask))
+  taskModel.update({ groupId: id }, { $set: { groupId: null }}, { multi: true })
+    .then(updatedItems => console.log(updatedItems))
+
+  groupModel.findByIdAndRemove(id)
+    .then(removedGroup => groupSerializer.serialize(removedGroup))
+    .then(serializedGroup => res.json(serializedGroup))
     .catch(error => res.status(404).json(error));
 });
 
