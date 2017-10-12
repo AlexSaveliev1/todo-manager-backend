@@ -11,7 +11,8 @@ module.exports = {
 
     if (from && to) {
       filter.dueDate = {
-        dueDate: { $gte: from, $lte: to }
+        $gte: from,
+        $lte: to
       }
     }
 
