@@ -13,8 +13,8 @@ router.get('/', function(req, res, next) {
     .catch(error => res.status(404).json(error));
 });
 
-router.get('/:id', function(req, res, next) {
-  const id = req.params.id;
+router.get('/:group_id', function(req, res, next) {
+  const id = req.params.group_id;
 
   groupModel.findById(id)
     .populate('tasks')
@@ -33,10 +33,10 @@ router.post('/', function(req, res, next) {
     .catch(error => res.status(404).json(error));
 });
 
-router.put('/:id', function(req, res, next) {
+router.put('/:group_id', function(req, res, next) {
   const { body, params } = req,
     groupToUpdate = body.group,
-    { id } = params;
+    id = params.group_id;
 
   groupModel.findByIdAndUpdate(id, groupToUpdate, { new: true })
     .then(updatedGroup => groupSerializer.serialize(updatedGroup))
@@ -44,11 +44,11 @@ router.put('/:id', function(req, res, next) {
     .catch(error => res.status(404).json(error));
 });
 
-router.delete('/:id', function(req, res, next) {
+router.delete('/:group_id', function(req, res, next) {
   const { body, params } = req,
-  { id } = params;
+  id = params.group_id;
 
-  taskModel.update({ groupId: id }, { $set: { groupId: null }}, { multi: true })
+  taskModel.update({ group: id }, { $set: { groupId: null }}, { multi: true })
     .then(updatedItems => console.log(updatedItems))
 
   groupModel.findByIdAndRemove(id)

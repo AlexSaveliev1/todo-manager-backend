@@ -16,8 +16,8 @@ router.get('/', function(req, res, next) {
       .catch(error => res.status(404).json(error));
 });
 
-router.get('/:id', function(req, res, next) {
-  const id = req.params.id;
+router.get('/:task_id', function(req, res, next) {
+  const id = req.params.task_id;
 
   taskModel.findById(id)
     .then(task => taskSerializer.serialize(task))
@@ -35,10 +35,10 @@ router.post('/', function(req, res, next) {
       .catch(error => res.status(404).json(error));
 });
 
-router.put('/:id', function(req, res, next) {
+router.put('/:task_id', function(req, res, next) {
   const { body, params } = req,
     taskToUpdate = body.task,
-    { id } = params;
+    id = params.task_id;
 
   taskModel.findByIdAndUpdate(id, taskToUpdate, { new: true })
     .then(updatedTask => taskSerializer.serialize(updatedTask))
@@ -46,9 +46,9 @@ router.put('/:id', function(req, res, next) {
     .catch(error => res.status(404).json(error));
 });
 
-router.delete('/:id', function(req, res, next) {
+router.delete('/:task_id', function(req, res, next) {
   const { body, params } = req,
-  { id } = params;
+  id = params.task_id;
 
   taskModel.findByIdAndRemove(id)
     .then(removedTask => taskSerializer.serialize(removedTask))

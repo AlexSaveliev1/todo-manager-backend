@@ -8,7 +8,7 @@ let schema = mongoose.Schema({
   updatedAt: Number,
   deletedAt: Number,
   priority: Number,
-  groupId: {type: mongoose.Schema.Types.Number, ref: 'group'},
+  group: {type: mongoose.Schema.Types.Number, ref: 'group'},
   subtasks: Array
 });
 

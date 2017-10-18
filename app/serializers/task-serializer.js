@@ -1,9 +1,9 @@
 function serializeData(data) {
-  const { _id, groupId, title, createdAt, dueDate, subtasks, finishedAt, updatedAt, priority } = data;
+  const { _id, group, title, createdAt, dueDate, subtasks, finishedAt, updatedAt, priority } = data;
   
     return {
       id: _id,
-      groupId,
+      group,
       title,
       dueDate,
       priority,
@@ -15,17 +15,9 @@ function serializeData(data) {
 }
 
 module.exports = {
-  serialize(data, async = true) {
+  serialize(data) {
     const isArrayOfTasks = Array.isArray(data),
       serializedTasks = isArrayOfTasks ? data.map(task => serializeData(task)) : serializeData(data);
-
-    if (async) {
-      return new Promise(resolve => {
-        return resolve({
-          "tasks": serializedTasks 
-        });
-      })
-    }
     
     return {
       "tasks": serializedTasks

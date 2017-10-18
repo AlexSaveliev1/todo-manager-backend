@@ -13,17 +13,9 @@ function serializeData(data) {
 }
 
 module.exports = {
-  serialize(data, async = true) {
+  serialize(data) {
     const isArrayOfGroups = Array.isArray(data),
       serializedGroups = isArrayOfGroups ? data.map(group => serializeData(group)) : serializeData(data);
-
-    if (async) {
-      return new Promise(resolve => {
-        return resolve({
-          "groups": serializedGroups 
-        });
-      })
-    }
 
     return {
       "groups": serializedGroups 

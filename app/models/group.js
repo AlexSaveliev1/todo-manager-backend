@@ -1,8 +1,9 @@
 const mongoose = require('mongoose'),
   autoIncrement = require('mongoose-auto-increment'),
   groupSchema = require('../schemas/group'),
-  db = 'todomanager',
-  connection = mongoose.connect(`mongodb://localhost/${db}`);
+  config = require('../config'),
+  { db } = config,
+  connection = mongoose.connect(`mongodb://${db.host}/${db.name}`);
 
 autoIncrement.initialize(connection);
 groupSchema.plugin(autoIncrement.plugin, 'group');
