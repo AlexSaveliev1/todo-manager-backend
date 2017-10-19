@@ -9,7 +9,8 @@ let express = require('express'),
 
 // Routes
 const tasks = require('./routes/tasks'),
-  groups = require('./routes/groups');
+  groups = require('./routes/groups'),
+  subtasks = require('./routes/subtasks');
 
 app.use(logger('dev'));
 
@@ -20,9 +21,10 @@ app.use(cors());
 
 app.use('/tasks', tasks);
 app.use('/groups', groups);
+app.use('/subtasks', subtasks);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
