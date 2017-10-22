@@ -5,6 +5,8 @@ const mongoose = require('mongoose'),
   { db } = config,
   connection = mongoose.connect(`mongodb://${db.host}/${db.name}`);
 
+mongoose.Promise = global.Promise;
+
 autoIncrement.initialize(connection);
 taskSchema.plugin(autoIncrement.plugin, 'task');
 

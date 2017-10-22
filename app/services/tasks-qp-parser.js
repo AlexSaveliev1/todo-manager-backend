@@ -17,25 +17,25 @@ module.exports = {
     }
 
     if (dueDate) {
-      filter.dueDate = { 
+      filter.dueDate = {
         $eq: dueDate
       };
     }
 
     if (groupId) {
-      filter.groupId = { 
+      filter.groupId = {
         $eq: groupId
       };
     }
 
     if (priority) {
-      filter.priority = { 
+      filter.priority = {
         $eq: priority
       };
     }
 
     if (task) {
-      filter.task = { 
+      filter.task = {
         $eq: task
       };
     }

@@ -6,7 +6,7 @@ let schema = mongoose.Schema({
   task: Number,
   createdAt: Number,
   updatedAt: Number,
-  deletedAt: Number,
+  deletedAt: Number
 });
 
 module.exports = schema;

@@ -1,11 +1,11 @@
 let express = require('express'),
   path = require('path'),
-  favicon = require('serve-favicon'),
   logger = require('morgan'),
   cookieParser = require('cookie-parser'),
   bodyParser = require('body-parser'),
   cors = require('cors'),
-  app = express();
+  app = express(),
+  port = 3000;
 
 // Routes
 const tasks = require('./routes/tasks'),
@@ -14,7 +14,7 @@ const tasks = require('./routes/tasks'),
 
 app.use(logger('dev'));
 
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
@@ -25,12 +25,13 @@ app.use('/subtasks', subtasks);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-  var err = new Error('Not Found');
+  const err = new Error('Not Found');
+
   err.status = 404;
   next(err);
 });
 
-app.listen(3000, function () {
+app.listen(port, function () {
   console.log('app listen on port 3000');
 });
 

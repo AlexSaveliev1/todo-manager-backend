@@ -1,5 +1,3 @@
-const taskSerializer = require('./task-serializer');
-
 function serializeData(data) {
   let { _id, title, createdAt, updatedAt, deletedAt } = data;
 

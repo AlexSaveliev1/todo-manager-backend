@@ -10,8 +10,7 @@ let schema = mongoose.Schema({
   priority: Number,
   order: Number,
   group: { type: mongoose.Schema.Types.Number, ref: 'group'},
-  subtasks: Array,
-  completed: Boolean
+  subtasks: Array
 });
 
 module.exports = schema;
