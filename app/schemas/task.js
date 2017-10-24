@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 let schema = mongoose.Schema({
+  id: Number,
   title: String,
   dueDate: Number,
   createdAt: Number,
@@ -9,8 +10,7 @@ let schema = mongoose.Schema({
   deletedAt: Number,
   priority: Number,
   order: Number,
-  group: { type: mongoose.Schema.Types.Number, ref: 'group'},
-  subtasks: Array
+  group: { type: mongoose.Schema.Types.Number, ref: 'group' }
 });
 
 module.exports = schema;

@@ -1,5 +1,5 @@
 function serializeData(data) {
-  const { _id, group, title, createdAt, dueDate, subtasks, finishedAt, updatedAt, priority, order } = data;
+  const { _id, group, title, createdAt, dueDate, finishedAt, updatedAt, priority, order, comments } = data;
 
   return {
     id: _id,
@@ -11,7 +11,7 @@ function serializeData(data) {
     createdAt,
     updatedAt,
     finishedAt,
-    subtasks
+    comments
   };
 }
 
@@ -19,7 +19,7 @@ module.exports = {
   serialize(data) {
     const isArrayOfTasks = Array.isArray(data),
       serializedTasks = isArrayOfTasks ? data.map(task => serializeData(task)) : serializeData(data);
-
+    
     return {
       'tasks': serializedTasks
     };

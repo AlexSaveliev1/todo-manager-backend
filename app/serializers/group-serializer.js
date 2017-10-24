@@ -1,5 +1,5 @@
 function serializeData(data) {
-  let { _id, title, createdAt, updatedAt, deletedAt } = data;
+  const { _id, title, createdAt, updatedAt, deletedAt } = data;
 
   return {
     id: _id,
@@ -16,7 +16,7 @@ module.exports = {
       serializedGroups = isArrayOfGroups ? data.map(group => serializeData(group)) : serializeData(data);
 
     return {
-      'groups': serializedGroups 
+      'groups': serializedGroups
     };
   }
 };

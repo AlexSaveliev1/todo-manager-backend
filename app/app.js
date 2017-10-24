@@ -10,7 +10,8 @@ let express = require('express'),
 // Routes
 const tasks = require('./routes/tasks'),
   groups = require('./routes/groups'),
-  subtasks = require('./routes/subtasks');
+  subtasks = require('./routes/subtasks'),
+  comments = require('./routes/comments');
 
 app.use(logger('dev'));
 
@@ -22,6 +23,7 @@ app.use(cors());
 app.use('/tasks', tasks);
 app.use('/groups', groups);
 app.use('/subtasks', subtasks);
+app.use('/comments', comments);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
