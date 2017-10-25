@@ -1,5 +1,5 @@
 function serializeData(data) {
-  const { _id, group, title, createdAt, dueDate, finishedAt, updatedAt, priority, order, comments } = data;
+  const { _id, group, title, createdAt, dueDate, finishedAt, updatedAt, priority, order } = data;
 
   return {
     id: _id,
@@ -10,8 +10,7 @@ function serializeData(data) {
     order,
     createdAt,
     updatedAt,
-    finishedAt,
-    comments
+    finishedAt
   };
 }
 

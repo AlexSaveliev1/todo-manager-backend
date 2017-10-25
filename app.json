@@ -1,0 +1,8 @@
+{
+  "name": "TODO Manager",
+  "description": "API for TODO Manager",
+  "repository": "https://git.heroku.com/dry-eyrie-29826.git",
+  "logo": "",
+  "keywords": ["node", "todo", "api"],
+  "image": "heroku/nodejs"
+}
